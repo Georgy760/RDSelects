@@ -1,59 +1,72 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <cmath>
 #include "rselect_dselect.h"
 
 using namespace std;
 
-static vector<int64_t > piArray = {1415926535, 8979323846, 2643383279, 5028841971, 6939937510,
-                            5820974944, 5923078164, 4628620899, 8628034825, 3421170679};
-
 int main() {
     {
-        ifstream input1("../problem6.5test1.txt");
-        if (!input1.is_open()) {
-            cout << "Error opening file {../problem6.5test1.txt}" << endl;
+        ifstream input("../problem6.5test1.txt");
+        if (!input.is_open()) {
+            cout << "\nError opening file {../problem6.5test1.txt}\n";
             return 1;
         }
 
-        vector<int64_t> test1;
-        int64_t num1;
-        while (input1 >> num1) {
-            test1.push_back(num1);
+        vector<int64_t> test;
+        int64_t num;
+        while (input >> num) {
+            test.push_back(num);
         }
-        input1.close();
+        input.close();
 
-        cout << "RSelect & DSelect Test1: " << std::endl;
-        RSelect_Test(test1);
+        cout << "\nRSelect & DSelect Test1:\n";
+        RSelect_Test(test);
 
-        DSelect_Test(test1);
+        DSelect_Test(test);
     }
 
     {
-        ifstream input2("../problem6.5test2.txt");
-        if (!input2.is_open()) {
-            cout << "Error opening file {../problem6.5test2.txt}" << endl;
+        ifstream input("../problem6.5test2.txt");
+        if (!input.is_open()) {
+            cout << "\nError opening file {../problem6.5test2.txt}\n";
             return 1;
         }
 
-        vector<int64_t> test2;
-        int64_t num2;
-        while (input2 >> num2) {
-            test2.push_back(num2);
+        vector<int64_t> test;
+        int64_t num;
+        while (input >> num) {
+            test.push_back(num);
         }
-        input2.close();
+        input.close();
 
-        cout << "RSelect & DSelect Test2: " << std::endl;
-        RSelect_Test(test2);
+        cout << "\nRSelect & DSelect Test2:\n";
+        RSelect_Test(test);
 
-        DSelect_Test(test2);
+        DSelect_Test(test);
     }
 
-    cout << "RSelect & DSelect Test_PI: " << std::endl;
-    RSelect_Test(piArray);
-    DSelect_Test(piArray);
+    {
+        ifstream input("../pi_array.txt");
+        if (!input.is_open()) {
+            cout << "\nError opening file {../pi_array.txt}\n";
+            return 1;
+        }
+
+        vector<int64_t> pi_array;
+        int64_t num;
+        while (input >> num) {
+            pi_array.push_back(num);
+        }
+        input.close();
+
+        cout << "\nRSelect & DSelect Test_PI: \n";
+        RSelect_Test(pi_array);
+
+        DSelect_Test(pi_array);
+    }
+
 
     return 0;
 }
-
-
